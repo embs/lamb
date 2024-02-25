@@ -1,24 +1,35 @@
-# README
+# Dependencies
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- AWS CLI
+- Terraform
 
-Things you may want to cover:
+# Infrastructure
 
-* Ruby version
+## Setup
 
-* System dependencies
+    terraform init
+    bin/terraform-apply
 
-* Configuration
+## Validation
 
-* Database creation
+    terraform validate
 
-* Database initialization
+## Teardown
 
-* How to run the test suite
+    terraform destroy
 
-* Services (job queues, cache servers, search engines, etc.)
+# Docker
 
-* Deployment instructions
+TODO: generalize the account ID.
 
-* ...
+## Login
+
+    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 919206211910.dkr.ecr.us-east-1.amazonaws.com
+
+## Build
+
+    docker build -t 919206211910.dkr.ecr.us-east-1.amazonaws.com/rails-lambda-worker .
+
+## Push
+
+    docker push 919206211910.dkr.ecr.us-east-1.amazonaws.com/rails-lambda-worker
