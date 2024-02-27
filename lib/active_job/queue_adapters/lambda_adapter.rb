@@ -4,7 +4,7 @@ module ActiveJob
       def enqueue(job)
         client = Aws::Lambda::Client.new(region: 'us-east-1')
 
-        response = client.invoke(function_name: 'rails-lambda-worker',
+        response = client.invoke(function_name: 'lamb',
                                  invocation_type: 'Event',
                                  payload: JSON[job.serialize])
 
