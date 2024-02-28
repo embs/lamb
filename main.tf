@@ -17,15 +17,15 @@ variable "SECRET_KEY_BASE" {
   type = string
 }
 
-resource "aws_ecr_repository" "lamb" {
-  name                 = "lamb"
-  image_tag_mutability = "MUTABLE"
-  force_delete         = true
-
-  image_scanning_configuration {
-    scan_on_push = true
-  }
-}
+# resource "aws_ecr_repository" "lamb" {
+#   name                 = "lamb"
+#   image_tag_mutability = "MUTABLE"
+#   force_delete         = true
+#
+#   image_scanning_configuration {
+#     scan_on_push = true
+#   }
+# }
 
 data "aws_iam_policy_document" "assume_role" {
   statement {
