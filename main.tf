@@ -43,11 +43,25 @@ data "aws_iam_policy_document" "assume_role" {
 resource "aws_iam_role" "lamb_role" {
   name               = "lamb_role"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
-}
 
-resource "aws_iam_role_policy_attachment" "lambda_sqs_execution_role_attachment" {
-  role       = aws_iam_role.lamb_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
+  inline_policy {
+    name = "logs_permissions"
+
+    policy = jsonencode({
+      Version = "2012-10-17"
+      Statement = [
+        {
+          Action = [
+            "logs:CreateLogGroup",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
+          ]
+          Effect   = "Allow"
+          Resource = "*"
+        }
+      ]
+    })
+  }
 }
 
 resource "aws_lambda_function" "lamb" {
