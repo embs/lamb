@@ -1,6 +1,6 @@
 module ActiveJob
   module QueueAdapters
-    class LambdaAdapter
+    class LambAdapter
       def enqueue(job)
         client = Aws::Lambda::Client.new(region: 'us-east-1')
 

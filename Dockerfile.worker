@@ -57,4 +57,4 @@ USER rails:rails
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/usr/local/bundle/ruby/2.7.0/gems/aws_lambda_ric-2.0.0/bin/aws_lambda_ric"]
-CMD ["config/environment.ActiveJob::LambdaHandler.handle"]
+CMD ["config/environment.ActiveJob::LambHandler.handle"]
